@@ -1,4 +1,3 @@
-const glob = require('glob')
 const electronFiles = 'service/browser.js, service/ipc.js, utilities/file.js,'
 module.exports = {
     pluginOptions: {
@@ -12,6 +11,13 @@ module.exports = {
                 win: {
                     icon: 'public/server.ico'
                 }
+            }
+        }
+    },
+    css: {
+        loaderOptions: {
+            sass: {
+                additionalData: `@import "@/assets/scss/variables.scss";`
             }
         }
     }

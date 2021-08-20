@@ -1,0 +1,12 @@
+{
+    "serverName": "",
+    "adminPassword": "",
+    "carGroup": "GT3",
+    "trackMedalsRequirement": 0,
+    "safetyRatingRequirement": 70,
+    "racecraftRatingRequirement": -1,
+    "password": "",
+    "maxCarSlots": 30,
+    "spectatorPassword": "",
+    "configVersion": 1
+}

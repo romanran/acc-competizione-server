@@ -5,8 +5,11 @@ const { ipcMain } = require('electron')
 
 let dirWatcher
 const handlers = {
-    async readStore(event, payload) {
+    async storeGet(event, payload) {
         return storage.get(payload.name)
+    },
+    async storeSet(event, payload) {
+        return storage.set(payload.name, payload.value)
     },
     async readDir(event, payload) {
         const path = require('path')
@@ -34,6 +37,10 @@ const handlers = {
         } catch (err) {
             return err
         }
+    },
+    async checkServerLocation(event, payload) {
+        const fs = require('fs-extra')
+        return await fs.pathExists(`${payload.path}/accServer.exe`)
     }
 }
 

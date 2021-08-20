@@ -11,19 +11,32 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Assistant&display=swap');
 * {
     box-sizing: inherit;
 }
 html,
 body {
     height: 100%;
-    background: white;
+    padding: 0;
+    margin: 0;
+    background: #333;
+    color: white;
     box-sizing: border-box;
+    font-family: 'Assistant', sans-serif;
 }
-.app {
+.app,
+#app {
     height: 100%;
 }
 .max-height {
     height: 100%;
+}
+.field {
+}
+.field__label {
+}
+.field__input {
+    display: block;
 }
 </style>
