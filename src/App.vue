@@ -39,4 +39,20 @@ body {
 .field__input {
     display: block;
 }
+.ac-btn {
+    background: none;
+    border-radius: 2px;
+    border: 2px solid $border-color;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    &:hover:not(:disabled) {
+        background: $hover-bg;
+        border-color: white;
+    }
+    &:disabled {
+        color: rgba(white, 0.3);
+        cursor: default;
+    }
+}
 </style>

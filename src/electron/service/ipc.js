@@ -11,6 +11,9 @@ const handlers = {
     async storeSet(event, payload) {
         return storage.set(payload.name, payload.value)
     },
+    async storeDelete(event, payload) {
+        return storage.delete(payload.name)
+    },
     async readDir(event, payload) {
         const path = require('path')
         storage.set('cwd', path.normalize(payload.dir))

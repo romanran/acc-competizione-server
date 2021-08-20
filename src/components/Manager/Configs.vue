@@ -1,29 +1,31 @@
 <template>
     <div class="configs">
+        <h2 class="configs__title">Configurations:</h2>
+
         <div class="configs__items">
-            <div class="configs__config config" v-for="config in configs" :key="config.id">
+            <div class="configs__config config" v-for="config in configs" :key="config.id" @click="$emit('change', config)">
                 <span class="config__title">{{ config.name }}</span>
-                <button class="config__delete" @click="openDeleteModal(config)">x</button>
+                <button class="config__delete" @click="openDeleteModal(config)">✖</button>
             </div>
         </div>
 
-        <button class="configs__add" @click="create">Create new config</button>
-        <Modal v-if="modalsOpen.name">
-            <div class="field">
-                <label class="field__label">Configuration name</label>
-                <input v-model="newConfigName" ref="newName" type="text" class="field__input " />
-            </div>
+        <button class="configs__add ac-btn" @click="create">Create new config</button>
+        <Modal title="Configuration" v-if="modalsOpen.name" @close="modalsOpen.name = false">
+            <field label="Configuration name" v-model="newConfigName" type="text" />
             <template #footer>
-                <button @click="saveNewConfig = true" :disabled="!newConfigName">Ok</button>
+                <button class="ac-btn" @click="saveNewConfig = true" :disabled="!newConfigName">Ok</button>
             </template>
         </Modal>
-        <Modal v-if="modalsOpen.delete">
+        <Modal title="Delete" v-if="modalsOpen.delete" @close="modalsOpen.delete = false">
             <div class="field">
-                <label class="field__label">You are deleting {{ configToDelete.name }}</label>
+                <label class="field__label"
+                    >You are deleting <strong>{{ configToDelete.name }}</strong
+                    >. You can't undo this action.</label
+                >
             </div>
             <template #footer>
-                <button @click="closeDeleteModal">Cancel</button>
-                <button @click="deleteConfig">Delete</button>
+                <button class="ac-btn" @click="closeDeleteModal">Cancel</button>
+                <button class="ac-btn" @click="deleteConfig">Delete</button>
             </template>
         </Modal>
     </div>
@@ -33,9 +35,10 @@
 import { random, kebabCase, cloneDeep, findIndex } from 'lodash'
 import { ref, watch, nextTick } from 'vue'
 import Modal from '@/components/ui/Modal'
+import Field from '@/components/ui/Field'
 
 export default {
-    components: { Modal },
+    components: { Modal, Field },
     setup() {
         const modalsOpen = ref({
             name: false,
@@ -109,6 +112,7 @@ export default {
                     name: 'configs',
                     value: newConfigs
                 })
+                await window.api.storeDelete({ name: configToDelete.value.id })
                 modalsOpen.value.delete = false
             }
         }
@@ -117,12 +121,39 @@ export default {
 </script>
 
 <style lang="scss">
+$config-height: 40px;
 .config {
     display: flex;
     cursor: pointer;
-    padding: 10px;
+    height: $config-height;
+    line-height: $config-height;
+    &:hover {
+        background: $hover-bg;
+    }
+}
+.configs__title {
+    margin: 10px;
+}
+.configs__items {
+    margin-bottom: 20px;
 }
 .config__title {
     flex: 1 0 auto;
+    margin-left: 10px;
+}
+.config__delete {
+    height: inherit;
+    width: $config-height;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: white;
+    &:hover {
+        background: $hover-bg;
+    }
+}
+.configs__add {
+    margin: 10px;
+    width: calc(100% - 20px);
 }
 </style>

@@ -1,0 +1,43 @@
+{
+    "settings": {
+        "serverName": "",
+        "adminPassword": "",
+        "carGroup": "GT3",
+        "trackMedalsRequirement": 0,
+        "safetyRatingRequirement": 0,
+        "racecraftRatingRequirement": -1,
+        "password": "",
+        "maxCarSlots": 30,
+        "spectatorPassword": "",
+        "configVersion": 1
+    },
+    "assistRules": {
+        "disableIdealLine": 1,
+        "disableAutosteer": 1,
+        "stabilityControlLevelMax": 100,
+        "disableAutoPitLimiter": 0,
+        "disableAutoGear": 0,
+        "disableAutoClutch": 0,
+        "disableAutoEngineStart": 0,
+        "disableAutoWiper": 0,
+        "disableAutoLights": 0
+    },
+    "event": {
+        "track": "",
+        "preRaceWaitingTimeSeconds": 0,
+        "sessionOverTimeSeconds": 110,
+        "ambientTemp": 24,
+        "cloudLevel": 0.0,
+        "rain": 0.0,
+        "weatherRandomness": 0.0,
+        "postRaceSeconds": 0,
+        "sessions": [],
+        "configVersion": 1
+    },
+    "configuration": {
+        "udpPort": 9231,
+        "tcpPort": 9232,
+        "maxConnections": 85,
+        "configVersion": 1
+    }
+}

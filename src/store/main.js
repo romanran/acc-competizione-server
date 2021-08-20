@@ -1,8 +1,9 @@
 import { makeMutations } from '@/utilities/store'
+import { createNewConfig } from '@/utilities/general'
 
 const initialState = {
     serverPath: '',
-    settings: {}
+    config: null
 }
 export default {
     state: {
@@ -18,9 +19,13 @@ export default {
             const serverPath = await window.api.storeGet({ name: 'serverPath' })
             context.commit('serverPath', serverPath)
         },
-        async getSettings(context) {
-            const settings = await window.api.readData({ name: 'settings' })
-            context.commit('settings', settings)
+        async loadConfig(context, payload) {
+            const config = await window.api.storeGet({ name: payload.id })
+            if (!config) {
+                context.commit('config', await createNewConfig(payload.id))
+            } else {
+                context.commit('config', config)
+            }
         }
     }
 }
